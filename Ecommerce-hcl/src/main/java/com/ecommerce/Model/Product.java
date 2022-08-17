@@ -2,8 +2,10 @@ package com.ecommerce.Model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,13 +35,14 @@ public class Product {
 	@Column(name="QuantityOnHand")
 	private int qOnHand;
 	
-	@ManyToOne
-	@JoinColumn(name="ColorID")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="ColorID", referencedColumnName="ColorID", nullable = false )
 	private Color color;
 	
-	@ManyToOne
-	@JoinColumn(name="CategoryID")
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="CategoryID", referencedColumnName="CategoryID", nullable = false)
 	private ProductCategory productCategory;
+	
 	
 	@OneToMany(mappedBy= "product")
 	private List<Orders> orders;

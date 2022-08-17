@@ -24,8 +24,8 @@ public class Roles {
 	
 	@Column(name="rolename")
 	private String roleName;
+
+
 	
-	@OneToMany(mappedBy= "roles")
-	private List<UserRoles> userRoles;
 	
 }
